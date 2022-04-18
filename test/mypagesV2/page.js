@@ -1,61 +1,39 @@
-const start = require("./start.page");
-const signInPage = require("./signin.page");
-const credentials = require("../credentials/credentials");
-
 class Page {
+  async getElement(element) {
+    return await $(element);
+  }
 
-    open (path) {
-        return browser.url(`https://dev.asset.accountant/${path}`)
-    }
+  async moveToElement(element) {
+    const inner = await this.getElement(element);
+    await inner.moveTo();
+  }
 
-   async login() {
-      await this.open();
-      await this.click(start.signInButton);
-      await this.setFieldValue(signInPage.userEmailInput, credentials.myEmail);
-      await this.click(signInPage.nextButton);
-      await this.setFieldValue(signInPage.passwordInput, credentials.myPassword);
-      await this.click(signInPage.signInButton);
-    }
+  async waitUntilClickable(element) {
+    await browser.waitUntil(
+      async () => {
+        return (await this.getElement(element)).isClickable();
+      },
+      { timeout: 25000 }
+    );
+  }
 
-    async getElement(element) {
-        return await $(element);
-    }
+  async clickCustom(element) {
+    await (await this.getElement(element)).click();
+  }
 
-    getElementSync(element) {
-        return $(element);
-    }
+  async click(element) {
+    await this.waitUntilClickable(element);
+    await (await this.getElement(element)).click();
+  }
 
-    async moveToElement(element) {
-        const inner = await this.getElementSync(element);
-         await inner.moveTo();
-    }
+  async setFieldValue(element, value) {
+    await this.waitUntilClickable(element);
+    await (await this.getElement(element)).addValue(value);
+  }
 
-    async waitUntilClickable(element) {
-        await browser.waitUntil(
-            async () => {
-            return (await this.getElement(element)).isClickable();
-        }, 
-        {timeout: 25000})
-    }
-
-    async clickCustom(element) {
-        await (await this.getElement(element)).click();
-    } 
-
-    async click(element) {
-        await this.waitUntilClickable(element);
-        await (await this.getElement(element)).click();
-}
-
-    async setFieldValue(element, value) {
-        await this.waitUntilClickable(element);
-        await (await this.getElement(element)).addValue(value);
-}
-
-    async setSelectValue(element, value) {
-        await this.waitUntilClickable(element);
-        await (await this.getElement(element)).selectByAttribute('value', value);
-    }
-
+  async setSelectValue(element, value) {
+    await this.waitUntilClickable(element);
+    await (await this.getElement(element)).selectByAttribute("value", value);
+  }
 }
 module.exports = new Page();

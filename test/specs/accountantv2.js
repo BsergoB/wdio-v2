@@ -1,63 +1,62 @@
-
-const page = require("../mypagesV2/page");
-const createAccount = require("../mypagesV2/createaccount.page");
+const page = require("../mypagesV2/Page");
+const createAccountPage = require("../mypagesV2/CreateAccount.page");
 const credentials = require("../credentials/credentials");
-const start = require("../mypagesV2/start.page");
-const signInPage = require("../mypagesV2/signin.page");
-const dashboard = require("../mypagesV2/dashboard.page");
+const assetPage = require("../mypagesV2/Asset.page");
+const dashBoardPage = require("../mypagesV2/DashBoard.page");
 
-describe('Test suite of creating new account, logging in, creating a new register and adding an asset group at dev.asset.accountant', () => {
+describe("Test suite of creating new account, logging in, creating a new register and adding an asset group at dev.asset.accountant", () => {
+  xit("First test case: Creating Account", async () => {
+    await assetPage.navigateTo(credentials.baseUrl);
+    await page.click(assetPage.createAccountButton);
+    await page.setFieldValue(createAccountPage.firstNameInput, credentials.myFirstName);
+    await page.setFieldValue(createAccountPage.lastNameInput, credentials.myLastName);
+    await page.setFieldValue(createAccountPage.emailInput, credentials.myEmail);
+    await page.setFieldValue(createAccountPage.phoneInput, credentials.myPhone);
+    await page.setFieldValue(createAccountPage.passwordInput, credentials.myPassword);
+    await page.setFieldValue(createAccountPage.confirmPasswordInput, credentials.myPassword);
+    await browser.pause(5000);
+    await page.click(createAccountPage.registerButton);
+    await browser.pause(10000);
+  });
 
-    it('First test case: Creating Account', async () => {
-        await page.open();
-        await page.click(start.createAccountButton);
-        await page.setFieldValue(createAccount.firstNameInput, credentials.myFirstName);
-        await page.setFieldValue(createAccount.lastNameInput, credentials.myLastName);
-        await page.setFieldValue(createAccount.emailInput, credentials.myEmail);
-        await page.setFieldValue(createAccount.phoneInput, credentials.myPhone);
-        await page.setFieldValue(createAccount.passwordInput, credentials.myPassword);
-        await page.setFieldValue(createAccount.confirmPasswordInput, credentials.myPassword);
-        await page.click(createAccount.registerButton);
-        //await browser.pause(15000);
-    });
+  xit("Second test case: Creating organization", async () => {
+    await assetPage.navigateTo(credentials.baseUrl);
+    await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
+    await page.setFieldValue(dashBoardPage.organizationInput, credentials.myOrg);
+    await page.click(dashBoardPage.createButton);
+    //await browser.pause(8000);
+  });
 
-    xit('Second test case: Creating organization', async () => {
+  xit("Third test case: Creating register", async () => {
+    await assetPage.navigateTo(credentials.baseUrl);
+    await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
+    await page.click(dashBoardPage.createRegisterButton);
+    await page.setFieldValue(dashBoardPage.registerNameInput, credentials.MyRegisterName);
+    await page.setSelectValue(dashBoardPage.countrySelect, credentials.myCountry);
+    await page.setSelectValue(dashBoardPage.entitySelect, credentials.myEntity);
+    await page.click(dashBoardPage.monthlyRadioButton);
+    await page.click(dashBoardPage.nextButton);
+    //await browser.pause(15000);
+  });
 
-        await page.login();
-        await page.setFieldValue(dashboard.organizationInput, credentials.myOrg);
-        await page.click(dashboard.createButton);
-        //await browser.pause(8000);
-    
-    })
+  it("Fourth test case: Adding asset group", async () => {
+    await assetPage.navigateTo(credentials.baseUrl);
+    await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
+    await page.click(dashBoardPage.myRegisterLink);
+    await page.click(dashBoardPage.createAssetGroupLink);
+    await page.setFieldValue(dashBoardPage.assetNameInput, credentials.myAssetName);
+    await page.setFieldValue(dashBoardPage.assetDescriptionInput, credentials.myDescription);
+    await page.setFieldValue(dashBoardPage.parentGroupInput, credentials.myParentGroup);
+    await page.setSelectValue(dashBoardPage.assetTypeInput, credentials.myAsset);
+    await page.setSelectValue(dashBoardPage.taxDefaultInput, credentials.myTax);
+    await page.setSelectValue(dashBoardPage.accountsDefaultInput, credentials.myAccounts);
+    await page.click(dashBoardPage.saveButton);
+    //await browser.pause(15000);
+  });
 
-    xit('Third test case: Creating register', async () => {
-        await page.login();
-        await page.click(dashboard.createRegisterButton);
-        await page.setSelectValue(dashboard.countrySelect, credentials.myCountry);
-        await page.setSelectValue(dashboard.entitySelect, credentials.myEntity);
-        await page.click(dashboard.monthlyRadioButton);
-        await page.click(dashboard.nextButton);
-        //await browser.pause(15000);
-    })
-
-    xit('Fourth test case: Adding asset group', async () => {
-        await page.login();
-        await page.click(dashboard.myRegisterLink);
-        await page.click(dashboard.createAssetGroupLink);
-        await page.setFieldValue(dashboard.assetNameInput, credentials.myAssetName);
-        await page.setFieldValue(dashboard.assetDescriptionInput, credentials.myDescription);
-        await page.setFieldValue(dashboard.parentGroupInput, credentials.myParentGroup);
-        await page.setSelectValue(dashboard.assetTypeInput, credentials.myAsset);
-        await page.setSelectValue(dashboard.taxDefaultInput, credentials.myTax);
-        await page.setSelectValue(dashboard.accountsDefaultInput, credentials.myAccounts);
-        await page.click(dashboard.saveButton);
-        //await browser.pause(15000);
-
-    })
-
-    xit('Fifth test case: Successful login', async () => {
-        await page.login();
-        await browser.pause(20000);
-    })
-
+  xit("Fifth test case: Successful login", async () => {
+    await assetPage.navigateTo(credentials.baseUrl);
+    await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
+    await browser.pause(20000);
+  });
 });
