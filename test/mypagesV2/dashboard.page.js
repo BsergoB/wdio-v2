@@ -1,5 +1,4 @@
 const page = require("../mypagesV2/Page");
-const credentials = require("../credentials/credentials");
 class DashBoardPage {
   organizationInput = "input.form-control";
   createOrgButton = "button.btn.btn-primary";
