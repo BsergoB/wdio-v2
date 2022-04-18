@@ -13,7 +13,7 @@ describe("Test suite of creating new account, logging in, creating a new registe
     await assetPage.setPassword(credentials.myPassword);
     await assetPage.setConfirmPassword(credentials.myPassword);
     await assetPage.clickRegisterButton();
-    await browser.pause(10000);
+    await browser.pause(5000);
   });
 
   xit("Second test case: Creating organization", async () => {
@@ -21,7 +21,7 @@ describe("Test suite of creating new account, logging in, creating a new registe
     await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
     await dashBoardPage.setOrganization(credentials.myOrg);
     await dashBoardPage.clickCreateOrgButton();
-    await browser.pause(8000);
+    await browser.pause(5000);
   });
 
   xit("Third test case: Creating register", async () => {
@@ -32,7 +32,7 @@ describe("Test suite of creating new account, logging in, creating a new registe
     await dashBoardPage.setEntity(credentials.myEntity);
     await dashBoardPage.clickMonthlyRadioButton();
     await dashBoardPage.clickNextButton();
-    await browser.pause(15000);
+    await browser.pause(5000);
   });
 
   xit("Fourth test case: Adding asset group", async () => {
@@ -47,7 +47,7 @@ describe("Test suite of creating new account, logging in, creating a new registe
     await dashBoardPage.setTaxDefault(credentials.myTax);
     await dashBoardPage.setAccountsDefault(credentials.myAccounts);
     await dashBoardPage.clickSaveButton();
-    await browser.pause(10000);
+    await browser.pause(5000);
   });
 
   it("Fifth test case: Successful login", async () => {
