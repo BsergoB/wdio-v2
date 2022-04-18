@@ -1,7 +1,9 @@
+const page = require("../mypagesV2/Page");
+const credentials = require("../credentials/credentials");
 class DashBoardPage {
   organizationInput = "input.form-control";
-  createButton = "button.btn.btn-primary";
-  createRegisterButton = ".horizontal-wrap button.btn:nth-child(3)";
+  createOrgButton = "button.btn.btn-primary";
+  createRegisterButton = "nav button.btn:nth-child(5)";
   registerNameInput = ".Control-input input";
   countrySelect = "app-form-control.ng-star-inserted:nth-child(4) > div:nth-child(1) > div:nth-child(2) > select";
   entitySelect = "app-form-control.ng-star-inserted:nth-child(5) > div:nth-child(1) > div:nth-child(2) > select";
@@ -16,5 +18,68 @@ class DashBoardPage {
   accountsDefaultInput = "div.form-group:nth-child(2) > div:nth-child(4) > select";
   assetTypeInput = "select.custom-select:nth-child(4)";
   saveButton = "/html/body/app-root/div/main/app-view-assetgroup/app-standard-page/form/app-standard-page-content/div/div/div[1]/div[2]/div/button";
+
+  async setOrganization(value) {
+    await page.setFieldValue(this.organizationInput, value);
+  }
+  async clickCreateOrgButton() {
+    await page.click(this.createOrgButton);
+  }
+
+  async clickCreateRegister() {
+    await page.click(this.createRegisterButton);
+  }
+
+  async setCountry(value) {
+    await page.setDropdownItemByOption(this.countrySelect, value);
+  }
+
+  async setEntity(value) {
+    await page.setDropdownItemByOption(this.entitySelect, value);
+  }
+
+  async clickMonthlyRadioButton() {
+    await page.click(this.monthlyRadioButton);
+  }
+
+  async clickNextButton() {
+    await page.click(this.nextButton);
+  }
+
+  async clickMyRegister() {
+    await page.click(this.myRegisterLink);
+  }
+
+  async clickCreateAssetGroup() {
+    await page.click(this.createAssetGroupLink);
+  }
+
+  async setAssetNameInput(value) {
+    await page.setFieldValue(this.assetNameInput, value);
+  }
+
+  async setAssetDescriptionInput(value) {
+    await page.setFieldValue(this.assetDescriptionInput, value);
+  }
+
+  async setParentGroupInput(value) {
+    await page.setFieldValue(this.parentGroupInput, value);
+  }
+
+  async setAssetType(value) {
+    await page.setDropdownItemByOption(this.assetTypeInput, value);
+  }
+
+  async setTaxDefault(value) {
+    await page.setDropdownItemByOption(this.taxDefaultInput, value);
+  }
+
+  async setAccountsDefault(value) {
+    await page.setDropdownItemByOption(this.accountsDefaultInput, value);
+  }
+
+  async clickSaveButton() {
+    await page.click(this.saveButton);
+  }
 }
 module.exports = new DashBoardPage();

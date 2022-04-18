@@ -13,7 +13,16 @@ class Page {
       async () => {
         return (await this.getElement(element)).isClickable();
       },
-      { timeout: 25000 }
+      { timeout: 15000 }
+    );
+  }
+
+  async waitUntilDisplayed(element) {
+    await browser.waitUntil(
+      async () => {
+        return (await this.getElement(element)).isDisplayed();
+      },
+      { timeout: 15000 }
     );
   }
 
@@ -27,11 +36,11 @@ class Page {
   }
 
   async setFieldValue(element, value) {
-    await this.waitUntilClickable(element);
+    await this.waitUntilDisplayed(element);
     await (await this.getElement(element)).addValue(value);
   }
 
-  async setSelectValue(element, value) {
+  async setDropdownItemByOption(element, value) {
     await this.waitUntilClickable(element);
     await (await this.getElement(element)).selectByAttribute("value", value);
   }

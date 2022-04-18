@@ -6,9 +6,9 @@ class Credentials {
   myPassword = "CourseQA123";
   myOrg = "Bakersfield Inc.";
   MyRegisterName = "Great Register";
-  myAssetName = "myAssetName";
+  myAssetName = "This is Asset";
   myDescription = "There will be some description one day";
-  myParentGroup = "Unknown parent group";
+  myParentGroup = "The main parent group";
   baseUrl = "https://dev.asset.accountant/";
   myCountry = "6: 10";
   myEntity = "42";
