@@ -54,7 +54,7 @@ describe("Test suite of creating new account, logging in, creating a new registe
     await browser.pause(5000);
   });
 
-  it("Fifth test case: Successful login", async () => {
+  xit("Fifth test case: Successful login", async () => {
     await openAndLogin(credentials.baseUrl, credentials.myEmail, credentials.myPassword)
     //await assetPage.navigateTo(credentials.baseUrl);
     //await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
