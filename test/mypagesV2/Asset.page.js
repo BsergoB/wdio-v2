@@ -1,4 +1,4 @@
-const page = require("./Page.js");
+const page = require("./Page");
 class AssetPage {
   createAccountButton = "div.text-center a.btn:nth-child(3)";
   signInButton = "div.text-center summary.btn";
