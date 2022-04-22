@@ -3,6 +3,10 @@ const assetPage = require("../mypagesV2/Asset.page");
 const dashBoardPage = require("../mypagesV2/DashBoard.page");
 
 describe("Test suite of creating new account, logging in, creating a new register and adding an asset group at dev.asset.accountant", () => {
+ async function openAndLogin (url, email, password) {
+    await assetPage.navigateTo(url);
+    await assetPage.loginToAccount(email, password);
+  }
   xit("First test case: Creating Account", async () => {
     await assetPage.navigateTo(credentials.baseUrl);
     await assetPage.clickCreateButton();
@@ -51,8 +55,9 @@ describe("Test suite of creating new account, logging in, creating a new registe
   });
 
   it("Fifth test case: Successful login", async () => {
-    await assetPage.navigateTo(credentials.baseUrl);
-    await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
+    await openAndLogin(credentials.baseUrl, credentials.myEmail, credentials.myPassword)
+    //await assetPage.navigateTo(credentials.baseUrl);
+    //await assetPage.loginToAccount(credentials.myEmail, credentials.myPassword);
     await browser.pause(10000);
   });
 });
