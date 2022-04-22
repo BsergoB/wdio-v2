@@ -1,6 +1,6 @@
-const credentials = require("../credentials/credentials");
-const assetPage = require("../mypagesV2/Asset.page");
-const dashBoardPage = require("../mypagesV2/DashBoard.page");
+const credentials = require("../credentials/credentials.js");
+const assetPage = require("../mypagesV2/Asset.page.js");
+const dashBoardPage = require("../mypagesV2/DashBoard.page.js");
 
 describe("Test suite of creating new account, logging in, creating a new register and adding an asset group at dev.asset.accountant", () => {
  async function openAndLogin (url, email, password) {
