@@ -25,7 +25,7 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-         './test/specs/accountantv2.js'
+        // './test/specs/accountantv2.js'
     ],
     //
     // ============
