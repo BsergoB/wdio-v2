@@ -1,9 +1,7 @@
 class Credentials {
   myFirstName = "Ben";
   myLastName = "Richards";
-  myEmail = "luxecourseaqa@gmail.com";
   myPhone = "732-634-1517";
-  myPassword = "CourseQA123";
   myOrg = "Bakersfield Inc.";
   MyRegisterName = "Great Register";
   myAssetName = "This is Asset";
